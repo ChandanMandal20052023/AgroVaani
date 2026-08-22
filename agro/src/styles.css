@@ -1,0 +1,215 @@
+/* ==========================================================================
+   1. IMPORTS & CONFIGURATION (Tailwind v4)
+   ========================================================================== */
+
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+/* Custom dark mode variant trigger */
+@custom-variant dark (&:is(.dark *));
+
+/* ==========================================================================
+   2. TAILWIND THEME EXTENSIONS
+   ========================================================================== */
+
+@theme inline {
+  /* Border Radii */
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+
+  /* Functional UI Colors */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+
+  /* AgroVaani Brand Palette */
+  --color-cream: var(--cream);
+  --color-linen: var(--linen);
+  --color-terracotta: var(--terracotta);
+  --color-olive: var(--olive);
+  --color-soil: var(--soil);
+  --color-amethyst: var(--amethyst);
+  --color-sapphire: var(--sapphire);
+  --color-active: var(--active-orange);
+  --color-sage: var(--sage);
+  --color-forest: var(--forest);
+  --color-gold: var(--gold);
+  --color-bone: var(--bone);
+
+  /* Typography Families */
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+/* ==========================================================================
+   3. DESIGN SYSTEM VARIABLES
+   ========================================================================== */
+
+/* Light Theme (Default) */
+:root {
+  --radius: 1rem;
+
+  /* Brand Palette Raw Values */
+  --cream: #f7f4ee;
+  --linen: #efece6;
+  --terracotta: #c85a32;
+  --olive: #6b7a52;
+  --soil: #2c251e;
+  --amethyst: #8b5cf6;
+  --sapphire: #3b82f6;
+  --active-orange: #f97316;
+  --sage: #cdd39a;
+  --forest: #2c3320;
+  --gold: #d3a03c;
+  --bone: #f4efe2;
+
+  /* UI Color Mapping */
+  --background: var(--cream);
+  --foreground: var(--soil);
+
+  --card: #ffffff;
+  --card-foreground: var(--soil);
+
+  --popover: #ffffff;
+  --popover-foreground: var(--soil);
+
+  --primary: var(--soil);
+  --primary-foreground: var(--cream);
+
+  --secondary: var(--linen);
+  --secondary-foreground: var(--soil);
+
+  --muted: var(--linen);
+  --muted-foreground: #7a7266;
+
+  --accent: var(--olive);
+  --accent-foreground: #ffffff;
+
+  --destructive: #b3261e;
+  --destructive-foreground: #ffffff;
+
+  --border: #e2ddd3;
+  --input: #e2ddd3;
+  --ring: var(--olive);
+}
+
+/* Dark Theme Overrides */
+.dark {
+  --background: #1b1611;
+  --foreground: #f7f4ee;
+
+  --card: #241d16;
+  --card-foreground: #f7f4ee;
+
+  --popover: #241d16;
+  --popover-foreground: #f7f4ee;
+
+  --primary: #f7f4ee;
+  --primary-foreground: #2c251e;
+
+  --secondary: #2f2720;
+  --secondary-foreground: #f7f4ee;
+
+  --muted: #2f2720;
+  --muted-foreground: #b6ada0;
+
+  --accent: #6b7a52;
+  --accent-foreground: #ffffff;
+
+  --destructive: #e5484d;
+  --destructive-foreground: #ffffff;
+
+  --border: rgba(255, 255, 255, 0.12);
+  --input: rgba(255, 255, 255, 0.16);
+  --ring: #8b5cf6;
+}
+
+/* ==========================================================================
+   4. BASE STYLES
+   ========================================================================== */
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+/* ==========================================================================
+   5. KEYFRAME ANIMATIONS
+   ========================================================================== */
+
+@keyframes agri-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgb(139 92 246 / 0.45);
+  }
+
+  50% {
+    box-shadow: 0 0 0 12px rgb(139 92 246 / 0);
+  }
+}
+
+/* ==========================================================================
+   6. CUSTOM UTILITIES
+   ========================================================================== */
+
+/* Glassmorphism Effect */
+@utility glass {
+  background-color: rgb(255 255 255 / 0.4);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgb(255 255 255 / 0.6);
+  box-shadow:
+    0 10px 30px -12px rgb(44 37 30 / 0.22),
+    0 2px 8px -4px rgb(44 37 30 / 0.08);
+}
+
+/* Radial Pattern Overlay */
+@utility paper-grain {
+  background-image: radial-gradient(circle at 1px 1px, rgb(44 37 30 / 0.05) 1px, transparent 0);
+  background-size: 22px 22px;
+}
+
+/* Hexagonal Masking */
+@utility hex-clip {
+  clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0% 50%);
+}
+
+/* Pulsing Verification Effect */
+@utility verify-pulse {
+  animation: agri-pulse 2.4s ease-in-out infinite;
+}
